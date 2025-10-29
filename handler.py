@@ -3,6 +3,7 @@ import uuid
 import os
 import boto3
 from datetime import datetime
+from urllib.parse import unquote
 
 # Configuración de DynamoDB
 # Usamos boto3.resource para una interfaz de alto nivel (más fácil de usar)
@@ -76,12 +77,6 @@ def listFunction(event, context):
         return { 'statusCode': 500, 'body': json.dumps({'message': 'Error interno del servidor.'}) }
 
 # --- 4. U - UPDATE (Actualizar Producto) ---
-from urllib.parse import unquote
-from decimal import Decimal
-from datetime import datetime
-import json
-# ... (otras importaciones y definiciones de dynamodb, table, DecimalEncoder)
-
 def updateFunction(event, context):
     try:
         timestamp = str(datetime.now().timestamp())
@@ -101,8 +96,6 @@ def updateFunction(event, context):
         for key, value in body.items():
             if key not in IGNORAR_KEYS:
                 # Conversión a Decimal para el precio
-                if key == 'price':
-                    value = Decimal(str(value))
                 
                 # Asignaciones (Ej: #name = :name)
                 update_assignments.append(f'#{key} = :{key}')
