@@ -43,7 +43,7 @@ def createFunction(event, context):
 def getFunction(event, context):
     try:
         # Recupera el ID del path: /datas/{id}
-        data_pk_encoded = event['pathParameters']['PK']
+        data_pk_encoded = event['pathParameters']['id']
         
         # 2. **DECODIFICAR** el valor para convertir %23 a #
         data_pk = unquote(data_pk_encoded) # <--- APLICACIÓN DE LA CORRECCIÓN
@@ -86,7 +86,7 @@ def updateFunction(event, context):
         
         # 1. DECODIFICACIÓN Y DATOS DE ENTRADA
         # Decodificar el PK para convertir %23 a #
-        data_pk = unquote(event['pathParameters']['PK'])
+        data_pk = unquote(event['pathParameters']['id'])
         body = json.loads(event['body'])
         
         update_assignments = []
@@ -141,7 +141,7 @@ def updateFunction(event, context):
 # --- 5. D - DELETE (Eliminar Producto) ---
 def deleteFunction(event, context):
     try:
-        data_pk_encoded = event['pathParameters']['PK']
+        data_pk_encoded = event['pathParameters']['id']
         
         # 2. **DECODIFICAR** el valor para convertir %23 a #
         data_pk = unquote(data_pk_encoded) # <--- APLICACIÓN DE LA CORRECCIÓN
