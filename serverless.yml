@@ -48,7 +48,35 @@ functions:
           path: coffee/{id}
           method: get
           cors: true
-# ... (Aquí se definirían listFunctions, updateFunction y deleteFunction)
+  listFunction:
+    handler: handler.listFunction
+    events:
+      - http:
+          path: datas # o productos
+          method: get
+          cors: true
+          authorizer:
+            type: NONE
+
+  updateFunction:
+    handler: handler.updateFunction
+    events:
+      - http:
+          path: datas/{PK}
+          method: put
+          cors: true
+          authorizer:
+            type: NONE
+
+  deleteFunction:
+    handler: handler.deleteFunction
+    events:
+      - http:
+          path: datas/{PK}
+          method: delete
+          cors: true
+          authorizer:
+            type: NONE
 
 # --- Recurso DynamoDB ---
 resources:
