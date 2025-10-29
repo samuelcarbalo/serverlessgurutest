@@ -76,50 +76,71 @@ def listFunction(event, context):
         return { 'statusCode': 500, 'body': json.dumps({'message': 'Error interno del servidor.'}) }
 
 # --- 4. U - UPDATE (Actualizar Producto) ---
+from urllib.parse import unquote
+from decimal import Decimal
+from datetime import datetime
+import json
+# ... (otras importaciones y definiciones de dynamodb, table, DecimalEncoder)
+
 def updateFunction(event, context):
     try:
         timestamp = str(datetime.now().timestamp())
-        data_pk = event['pathParameters']['PK']
+        
+        # 1. DECODIFICACIÓN Y DATOS DE ENTRADA
+        # Decodificar el PK para convertir %23 a #
+        data_pk = unquote(event['pathParameters']['PK'])
         body = json.loads(event['body'])
         
-        # Prepara la expresión de actualización
-        update_expression = ['SET']
+        update_assignments = []
         expression_attribute_values = {':updatedAt': timestamp}
+        expression_attribute_names = {'#updatedAt': 'updatedAt'}
         
-        # Iterar sobre el cuerpo para construir la expresión de actualización
-        for key, value in body.items():
-            if key not in ['PK', 'SK', 'createdAt']: # Ignorar claves primarias y fecha de creación
-                # Ejemplo: SET #n = :v, ...
-                update_expression.append(f'#{key} = :{key}')
-                expression_attribute_values[f':{key}'] = value
+        IGNORAR_KEYS = ['PK', 'SK', 'createdAt', 'updatedAt']
 
-        # Si no hay campos para actualizar, devolver 400
-        if len(update_expression) == 1:
+        # 2. CONSTRUCCIÓN DE LA EXPRESIÓN DINÁMICA
+        for key, value in body.items():
+            if key not in IGNORAR_KEYS:
+                # Conversión a Decimal para el precio
+                if key == 'price':
+                    value = Decimal(str(value))
+                
+                # Asignaciones (Ej: #name = :name)
+                update_assignments.append(f'#{key} = :{key}')
+                
+                # Valores y Nombres
+                expression_attribute_values[f':{key}'] = value
+                expression_attribute_names[f'#{key}'] = key 
+
+        # Si no hay campos válidos, devuelve 400
+        if not update_assignments:
             return { 'statusCode': 400, 'body': json.dumps({'message': 'No se proporcionaron campos válidos para actualizar.'}) }
 
-        # Añadir updatedAt al final
-        update_expression.append('#updatedAt = :updatedAt')
+        # 3. ENSAMBLAJE DE LA EXPRESIÓN FINAL
+        update_assignments.append('#updatedAt = :updatedAt')
         
+        # Unir las asignaciones con comas y añadir 'SET ' al inicio
+        update_expression_final = "SET " + ", ".join(update_assignments)
+
+        # 4. PARÁMETROS Y EJECUCIÓN
         params = {
             'Key': {'PK': data_pk, 'SK': '#METADATA#'},
-            'UpdateExpression': ' '.join(update_expression).replace(' ,', ',').replace('SET #', 'SET #', 1),
+            'UpdateExpression': update_expression_final,
             'ExpressionAttributeValues': expression_attribute_values,
-            'ExpressionAttributeNames': {f'#{key}': key for key in body.keys() if key not in ['PK', 'SK', 'createdAt']} | {'#updatedAt': 'updatedAt'},
-            'ReturnValues': 'ALL_NEW' # Devuelve el item actualizado
+            'ExpressionAttributeNames': expression_attribute_names,
+            'ReturnValues': 'ALL_NEW'
         }
         
-        # Ejecutar la actualización
         result = table.update_item(**params)
         
         return {
             'statusCode': 200,
             'headers': { 'Access-Control-Allow-Origin': '*' },
-            'body': json.dumps(result['Attributes'])
+            'body': json.dumps(result['Attributes']) 
         }
 
     except Exception as e:
         print(f"Error updating data: {e}")
-        return { 'statusCode': 500, 'body': json.dumps({'message': 'Error interno del servidor.'}) }
+        return { 'statusCode': 500, 'body': json.dumps({'message': f'Error interno del servidor. Detalle: {e}'}) }
 
 # --- 5. D - DELETE (Eliminar Producto) ---
 def deleteFunction(event, context):
