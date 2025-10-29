@@ -16,8 +16,8 @@ def createFunction(event, context):
         if 'name' not in body or 'description' not in body:
             return { 'statusCode': 400, 'body': json.dumps({'message': 'Faltan campos obligatorios: name y description.'}) }
         item = {
-            'PK': body['name'],
-            'SK': str(uuid.uuid4()),
+            'PK': "PRODUCT#" + str(uuid.uuid4()),
+            'SK': "#METADATA#",
             "name": body['name'],
             "description": body['description'],
             "price": body['price'],
@@ -42,9 +42,9 @@ def createFunction(event, context):
 def getFunction(event, context):
     try:
         # Recupera el ID del path: /datas/{id}
-        data_id = event['pathParameters']['id']
+        data_pk = event['pathParameters']['PK']
         
-        result = table.get_item(Key={'id': data_id})
+        result = table.get_item(Key={'PK': data_pk, 'SK': '#METADATA#'})
         item = result.get('Item')
 
         if not item:
