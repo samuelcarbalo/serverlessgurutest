@@ -48,6 +48,7 @@ functions:
           path: coffee/{id}
           method: get
           cors: true
+  
   listFunction:
     handler: handler.listFunction
     events:

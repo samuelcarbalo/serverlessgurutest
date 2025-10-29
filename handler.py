@@ -43,7 +43,10 @@ def createFunction(event, context):
 def getFunction(event, context):
     try:
         # Recupera el ID del path: /datas/{id}
-        data_pk = unquote(event['pathParameters']['PK'])
+        data_pk_encoded = event['pathParameters']['PK']
+        
+        # 2. **DECODIFICAR** el valor para convertir %23 a #
+        data_pk = unquote(data_pk_encoded) # <--- APLICACIÓN DE LA CORRECCIÓN
 
         result = table.get_item(Key={'PK': data_pk, 'SK': '#METADATA#'})
         item = result.get('Item')
@@ -138,7 +141,10 @@ def updateFunction(event, context):
 # --- 5. D - DELETE (Eliminar Producto) ---
 def deleteFunction(event, context):
     try:
-        data_pk = unquote(event['pathParameters']['PK'])
+        data_pk_encoded = event['pathParameters']['PK']
+        
+        # 2. **DECODIFICAR** el valor para convertir %23 a #
+        data_pk = unquote(data_pk_encoded) # <--- APLICACIÓN DE LA CORRECCIÓN
 
         # La clave compuesta requiere PK y SK para eliminar
         table.delete_item(Key={'PK': data_pk, 'SK': '#METADATA#'})
