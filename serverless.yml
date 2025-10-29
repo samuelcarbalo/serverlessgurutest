@@ -61,7 +61,7 @@ functions:
     handler: handler.updateFunction
     events:
       - http:
-          path: coffee/update/{PK}
+          path: coffee/update/{id}
           method: put
           cors: true
 
@@ -69,7 +69,7 @@ functions:
     handler: handler.deleteFunction
     events:
       - http:
-          path: coffee/delete/{PK}
+          path: coffee/delete/{id}
           method: delete
           cors: true
 
