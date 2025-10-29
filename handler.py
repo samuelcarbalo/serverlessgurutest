@@ -42,7 +42,6 @@ def createFunction(event, context):
 def getFunction(event, context):
     try:
         # Recupera el ID del path: /datas/{id}
-        print(data_pk = event['pathParameters'])
         data_pk = event['pathParameters']['id']
         
         result = table.get_item(Key={'PK': data_pk, 'SK': '#METADATA#'})
