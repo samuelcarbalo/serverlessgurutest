@@ -34,7 +34,7 @@ custom:
 # --- Funciones Lambda ---
 functions:
   createFunction:
-    handler: handler.createFunction # archivo.funcion
+    handler: handler.create_function # archivo.funcion
     events:
       - http:
           path: coffees
@@ -42,7 +42,7 @@ functions:
           cors: true
 
   getFunction:
-    handler: handler.getFunction
+    handler: handler.get_function
     events:
       - http:
           path: coffee/{id}
