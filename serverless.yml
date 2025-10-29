@@ -1,0 +1,72 @@
+service: data-serverless-python-api
+
+provider:
+  name: aws
+  runtime: python3.12 
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  
+  environment:
+    TEST_TABLE: ${self:custom.tableName}
+    REGION: ${self:provider.region}
+
+  # Permisos IAM para acceder a DynamoDB
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:GetItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:Scan
+            - dynamodb:Query
+          Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}"
+
+# Configuración del plugin de Python
+# plugins:
+#   - serverless-python-requirements
+
+custom:
+  tableName: 'test-serverless-table-${self:provider.stage}'
+
+# --- Funciones Lambda ---
+functions:
+  createFunction:
+    handler: handler.createFunction # archivo.funcion
+    events:
+      - http:
+          path: coffees
+          method: post
+          cors: true
+
+  getFunction:
+    handler: handler.getFunction
+    events:
+      - http:
+          path: coffee/{id}
+          method: get
+          cors: true
+# ... (Aquí se definirían listFunctions, updateFunction y deleteFunction)
+
+# --- Recurso DynamoDB ---
+resources:
+  Resources:
+    FunctionsDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: PK
+            AttributeType: S
+          - AttributeName: SK
+            AttributeType: S
+        KeySchema:
+          - AttributeName: PK
+            KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName}

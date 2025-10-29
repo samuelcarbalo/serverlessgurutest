@@ -1,0 +1,49 @@
+name: Serverless CI/CD
+
+on:
+  push:
+    branches:
+      - main # Despliegue a 'prod'
+      - dev  # Despliegue a 'dev'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    # Define la etapa basada en la rama
+    env:
+      # Si es la rama main, usa 'prod', si no, usa 'dev' (para la rama 'dev')
+      STAGE_NAME: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Configura Node.js (necesario para la CLI de Serverless y el plugin de Python)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      # Instala dependencias de Serverless y plugins (basado en package.json)
+      - name: Install Dependencies
+        run: npm install
+        
+      # Configura Python (necesario para el runtime de Lambda)
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Configura las credenciales de AWS
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      # Despliega la aplicación Serverless
+      - name: Deploy Serverless Application to ${{ env.STAGE_NAME }}
+        # El comando 'serverless' o 'sls' automáticamente detecta y empaqueta el código Python.
+        run: npx serverless deploy --stage ${{ env.STAGE_NAME }}
