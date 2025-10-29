@@ -9,7 +9,7 @@ from datetime import datetime
 dynamodb = boto3.resource('dynamodb', region_name=os.environ['REGION'])
 table = dynamodb.Table(os.environ['TEST_TABLE'])
 print(f"Using table: {os.environ['TEST_TABLE']}")
-def create_function(event, context):
+def createFunction(event, context):
     try:
         timestamp = str(datetime.now().timestamp())
         body = json.loads(event['body'])

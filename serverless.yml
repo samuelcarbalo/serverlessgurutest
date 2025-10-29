@@ -34,7 +34,7 @@ custom:
 # --- Funciones Lambda ---
 functions:
   createFunction:
-    handler: handler.create_function # archivo.funcion
+    handler: handler.createFunction # archivo.funcion
     events:
       - http:
           path: coffees
