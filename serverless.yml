@@ -52,7 +52,7 @@ functions:
     handler: handler.listFunction
     events:
       - http:
-          path: datas # o productos
+          path: coffees/all
           method: get
           cors: true
 
@@ -60,7 +60,7 @@ functions:
     handler: handler.updateFunction
     events:
       - http:
-          path: datas/{PK}
+          path: coffee/update/{PK}
           method: put
           cors: true
 
@@ -68,7 +68,7 @@ functions:
     handler: handler.deleteFunction
     events:
       - http:
-          path: datas/{PK}
+          path: coffee/delete/{PK}
           method: delete
           cors: true
 
