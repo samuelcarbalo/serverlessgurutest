@@ -42,7 +42,7 @@ functions:
           cors: true
 
   getFunction:
-    handler: handler.get_function
+    handler: handler.getFunction
     events:
       - http:
           path: coffee/{id}
@@ -55,8 +55,6 @@ functions:
           path: datas # o productos
           method: get
           cors: true
-          authorizer:
-            type: NONE
 
   updateFunction:
     handler: handler.updateFunction
@@ -65,8 +63,6 @@ functions:
           path: datas/{PK}
           method: put
           cors: true
-          authorizer:
-            type: NONE
 
   deleteFunction:
     handler: handler.deleteFunction
@@ -75,8 +71,6 @@ functions:
           path: datas/{PK}
           method: delete
           cors: true
-          authorizer:
-            type: NONE
 
 # --- Recurso DynamoDB ---
 resources:
