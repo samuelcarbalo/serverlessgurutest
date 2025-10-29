@@ -144,7 +144,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-us-east-1-9b3153fe-811e",
-                  "S3Key": "serverless/data-serverless-python-api/dev/1761767523010-2025-10-29T19:52:03.010Z/data-serverless-python-api.zip"
+                  "S3Key": "serverless/data-serverless-python-api/dev/1761769277754-2025-10-29T20:21:17.754Z/data-serverless-python-api.zip"
                 },
                 "Handler": "handler.createFunction",
                 "Runtime": "python3.12",
@@ -173,9 +173,9 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-us-east-1-9b3153fe-811e",
-                  "S3Key": "serverless/data-serverless-python-api/dev/1761767523010-2025-10-29T19:52:03.010Z/data-serverless-python-api.zip"
+                  "S3Key": "serverless/data-serverless-python-api/dev/1761769277754-2025-10-29T20:21:17.754Z/data-serverless-python-api.zip"
                 },
-                "Handler": "handler.getFunction",
+                "Handler": "handler.get_function",
                 "Runtime": "python3.12",
                 "FunctionName": "data-serverless-python-api-dev-getFunction",
                 "MemorySize": 1024,
@@ -197,24 +197,24 @@
                 "GetFunctionLogGroup"
               ]
             },
-            "CreateFunctionLambdaVersionsea38W3WyyeVApdcyNY7sj4H1LfgF6sFiJG2DPxpfDs": {
+            "CreateFunctionLambdaVersionsIR06kw7ybuBNUJVl8M6jjEg2e9ocKOz3TxYxIhhGTg": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "CreateFunctionLambdaFunction"
                 },
-                "CodeSha256": "kbPy7EYLBj44GbP6x34OsIEMrLGYyfgeBbRw/kKU74A="
+                "CodeSha256": "Xl16PvlHMkIaEw4MpK1TxrTWSB4wu0QDn0AMlHeiXbE="
               }
             },
-            "GetFunctionLambdaVersion4JkG5gKoJNQPBxh7cz9Po70AW5Z02aMaUbrBXBSKc": {
+            "GetFunctionLambdaVersion9Ii9FzRBON7p3cleaaOzkvgaYdvk0oOXbRyHewyYg": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetFunctionLambdaFunction"
                 },
-                "CodeSha256": "kbPy7EYLBj44GbP6x34OsIEMrLGYyfgeBbRw/kKU74A="
+                "CodeSha256": "Xl16PvlHMkIaEw4MpK1TxrTWSB4wu0QDn0AMlHeiXbE="
               }
             },
             "ApiGatewayRestApi": {
@@ -453,7 +453,7 @@
                 "GetFunctionLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1761767507185": {
+            "ApiGatewayDeployment1761769266177": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -583,7 +583,7 @@
             "CreateFunctionLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "CreateFunctionLambdaVersionsea38W3WyyeVApdcyNY7sj4H1LfgF6sFiJG2DPxpfDs"
+                "Ref": "CreateFunctionLambdaVersionsIR06kw7ybuBNUJVl8M6jjEg2e9ocKOz3TxYxIhhGTg"
               },
               "Export": {
                 "Name": "sls-data-serverless-python-api-dev-CreateFunctionLambdaFunctionQualifiedArn"
@@ -592,7 +592,7 @@
             "GetFunctionLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetFunctionLambdaVersion4JkG5gKoJNQPBxh7cz9Po70AW5Z02aMaUbrBXBSKc"
+                "Ref": "GetFunctionLambdaVersion9Ii9FzRBON7p3cleaaOzkvgaYdvk0oOXbRyHewyYg"
               },
               "Export": {
                 "Name": "sls-data-serverless-python-api-dev-GetFunctionLambdaFunctionQualifiedArn"
@@ -666,10 +666,10 @@
           "timeout": 6,
           "runtime": "python3.12",
           "vpc": {},
-          "versionLogicalId": "CreateFunctionLambdaVersionsea38W3WyyeVApdcyNY7sj4H1LfgF6sFiJG2DPxpfDs"
+          "versionLogicalId": "CreateFunctionLambdaVersionsIR06kw7ybuBNUJVl8M6jjEg2e9ocKOz3TxYxIhhGTg"
         },
         "getFunction": {
-          "handler": "handler.getFunction",
+          "handler": "handler.get_function",
           "events": [
             {
               "http": {
@@ -702,7 +702,7 @@
           "timeout": 6,
           "runtime": "python3.12",
           "vpc": {},
-          "versionLogicalId": "GetFunctionLambdaVersion4JkG5gKoJNQPBxh7cz9Po70AW5Z02aMaUbrBXBSKc"
+          "versionLogicalId": "GetFunctionLambdaVersion9Ii9FzRBON7p3cleaaOzkvgaYdvk0oOXbRyHewyYg"
         }
       },
       "resources": {
@@ -880,7 +880,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-9b3153fe-811e",
-                "S3Key": "serverless/data-serverless-python-api/dev/1761767523010-2025-10-29T19:52:03.010Z/data-serverless-python-api.zip"
+                "S3Key": "serverless/data-serverless-python-api/dev/1761769277754-2025-10-29T20:21:17.754Z/data-serverless-python-api.zip"
               },
               "Handler": "handler.createFunction",
               "Runtime": "python3.12",
@@ -909,9 +909,9 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-9b3153fe-811e",
-                "S3Key": "serverless/data-serverless-python-api/dev/1761767523010-2025-10-29T19:52:03.010Z/data-serverless-python-api.zip"
+                "S3Key": "serverless/data-serverless-python-api/dev/1761769277754-2025-10-29T20:21:17.754Z/data-serverless-python-api.zip"
               },
-              "Handler": "handler.getFunction",
+              "Handler": "handler.get_function",
               "Runtime": "python3.12",
               "FunctionName": "data-serverless-python-api-dev-getFunction",
               "MemorySize": 1024,
@@ -933,24 +933,24 @@
               "GetFunctionLogGroup"
             ]
           },
-          "CreateFunctionLambdaVersionsea38W3WyyeVApdcyNY7sj4H1LfgF6sFiJG2DPxpfDs": {
+          "CreateFunctionLambdaVersionsIR06kw7ybuBNUJVl8M6jjEg2e9ocKOz3TxYxIhhGTg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateFunctionLambdaFunction"
               },
-              "CodeSha256": "kbPy7EYLBj44GbP6x34OsIEMrLGYyfgeBbRw/kKU74A="
+              "CodeSha256": "Xl16PvlHMkIaEw4MpK1TxrTWSB4wu0QDn0AMlHeiXbE="
             }
           },
-          "GetFunctionLambdaVersion4JkG5gKoJNQPBxh7cz9Po70AW5Z02aMaUbrBXBSKc": {
+          "GetFunctionLambdaVersion9Ii9FzRBON7p3cleaaOzkvgaYdvk0oOXbRyHewyYg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetFunctionLambdaFunction"
               },
-              "CodeSha256": "kbPy7EYLBj44GbP6x34OsIEMrLGYyfgeBbRw/kKU74A="
+              "CodeSha256": "Xl16PvlHMkIaEw4MpK1TxrTWSB4wu0QDn0AMlHeiXbE="
             }
           },
           "ApiGatewayRestApi": {
@@ -1189,7 +1189,7 @@
               "GetFunctionLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1761767507185": {
+          "ApiGatewayDeployment1761769266177": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1319,7 +1319,7 @@
           "CreateFunctionLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateFunctionLambdaVersionsea38W3WyyeVApdcyNY7sj4H1LfgF6sFiJG2DPxpfDs"
+              "Ref": "CreateFunctionLambdaVersionsIR06kw7ybuBNUJVl8M6jjEg2e9ocKOz3TxYxIhhGTg"
             },
             "Export": {
               "Name": "sls-data-serverless-python-api-dev-CreateFunctionLambdaFunctionQualifiedArn"
@@ -1328,7 +1328,7 @@
           "GetFunctionLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetFunctionLambdaVersion4JkG5gKoJNQPBxh7cz9Po70AW5Z02aMaUbrBXBSKc"
+              "Ref": "GetFunctionLambdaVersion9Ii9FzRBON7p3cleaaOzkvgaYdvk0oOXbRyHewyYg"
             },
             "Export": {
               "Name": "sls-data-serverless-python-api-dev-GetFunctionLambdaFunctionQualifiedArn"
@@ -1373,13 +1373,11 @@
       "serviceProvider": null,
       "instanceParameters": null
     },
-    "serviceRawFile": "service: data-serverless-python-api\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: python3.12 \r\n  region: us-east-1\r\n  stage: ${opt:stage, 'dev'}\r\n  \r\n  environment:\r\n    TEST_TABLE: ${self:custom.tableName}\r\n    REGION: ${self:provider.region}\r\n\r\n  # Permisos IAM para acceder a DynamoDB\r\n  iam:\r\n    role:\r\n      statements:\r\n        - Effect: Allow\r\n          Action:\r\n            - dynamodb:PutItem\r\n            - dynamodb:GetItem\r\n            - dynamodb:UpdateItem\r\n            - dynamodb:DeleteItem\r\n            - dynamodb:Scan\r\n            - dynamodb:Query\r\n          Resource: \"arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}\"\r\n\r\n# Configuración del plugin de Python\r\n# plugins:\r\n#   - serverless-python-requirements\r\n\r\ncustom:\r\n  tableName: 'test-serverless-table-${self:provider.stage}'\r\n\r\n# --- Funciones Lambda ---\r\nfunctions:\r\n  createFunction:\r\n    handler: handler.createFunction # archivo.funcion\r\n    events:\r\n      - http:\r\n          path: coffees\r\n          method: post\r\n          cors: true\r\n\r\n  getFunction:\r\n    handler: handler.getFunction\r\n    events:\r\n      - http:\r\n          path: coffee/{id}\r\n          method: get\r\n          cors: true\r\n# ... (Aquí se definirían listFunctions, updateFunction y deleteFunction)\r\n\r\n# --- Recurso DynamoDB ---\r\nresources:\r\n  Resources:\r\n    FunctionsDynamoDBTable:\r\n      Type: 'AWS::DynamoDB::Table'\r\n      Properties:\r\n        AttributeDefinitions:\r\n          - AttributeName: PK\r\n            AttributeType: S\r\n          - AttributeName: SK\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: PK\r\n            KeyType: HASH\r\n          - AttributeName: SK\r\n            KeyType: RANGE\r\n        ProvisionedThroughput:\r\n          ReadCapacityUnits: 1\r\n          WriteCapacityUnits: 1\r\n        TableName: ${self:custom.tableName}",
+    "serviceRawFile": "service: data-serverless-python-api\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: python3.12 \r\n  region: us-east-1\r\n  stage: ${opt:stage, 'dev'}\r\n  \r\n  environment:\r\n    TEST_TABLE: ${self:custom.tableName}\r\n    REGION: ${self:provider.region}\r\n\r\n  # Permisos IAM para acceder a DynamoDB\r\n  iam:\r\n    role:\r\n      statements:\r\n        - Effect: Allow\r\n          Action:\r\n            - dynamodb:PutItem\r\n            - dynamodb:GetItem\r\n            - dynamodb:UpdateItem\r\n            - dynamodb:DeleteItem\r\n            - dynamodb:Scan\r\n            - dynamodb:Query\r\n          Resource: \"arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tableName}\"\r\n\r\n# Configuración del plugin de Python\r\n# plugins:\r\n#   - serverless-python-requirements\r\n\r\ncustom:\r\n  tableName: 'test-serverless-table-${self:provider.stage}'\r\n\r\n# --- Funciones Lambda ---\r\nfunctions:\r\n  createFunction:\r\n    handler: handler.createFunction # archivo.funcion\r\n    events:\r\n      - http:\r\n          path: coffees\r\n          method: post\r\n          cors: true\r\n\r\n  getFunction:\r\n    handler: handler.get_function\r\n    events:\r\n      - http:\r\n          path: coffee/{id}\r\n          method: get\r\n          cors: true\r\n# ... (Aquí se definirían listFunctions, updateFunction y deleteFunction)\r\n\r\n# --- Recurso DynamoDB ---\r\nresources:\r\n  Resources:\r\n    FunctionsDynamoDBTable:\r\n      Type: 'AWS::DynamoDB::Table'\r\n      Properties:\r\n        AttributeDefinitions:\r\n          - AttributeName: PK\r\n            AttributeType: S\r\n          - AttributeName: SK\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: PK\r\n            KeyType: HASH\r\n          - AttributeName: SK\r\n            KeyType: RANGE\r\n        ProvisionedThroughput:\r\n          ReadCapacityUnits: 1\r\n          WriteCapacityUnits: 1\r\n        TableName: ${self:custom.tableName}",
     "command": [
       "deploy"
     ],
-    "options": {
-      "stage": "dev"
-    },
+    "options": {},
     "orgId": "df7723e2-be43-442f-b0aa-f3f65b5810c0",
     "orgName": "src77969",
     "userId": "DKBwNflvhBJ2sY0dq0",
@@ -1388,18 +1386,18 @@
     "serviceProviderAwsCfStackName": "data-serverless-python-api-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:634210409251:stack/data-serverless-python-api-dev/c30f1b60-b500-11f0-9141-0e05a5561101",
     "serviceProviderAwsCfStackCreated": "2025-10-29T19:52:12.702Z",
-    "serviceProviderAwsCfStackUpdated": null,
-    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackUpdated": "2025-10-29T20:19:32.980Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "GetFunctionLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:634210409251:function:data-serverless-python-api-dev-getFunction:3",
+        "OutputValue": "arn:aws:lambda:us-east-1:634210409251:function:data-serverless-python-api-dev-getFunction:5",
         "Description": "Current Lambda function version",
         "ExportName": "sls-data-serverless-python-api-dev-GetFunctionLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "CreateFunctionLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:634210409251:function:data-serverless-python-api-dev-createFunction:3",
+        "OutputValue": "arn:aws:lambda:us-east-1:634210409251:function:data-serverless-python-api-dev-createFunction:5",
         "Description": "Current Lambda function version",
         "ExportName": "sls-data-serverless-python-api-dev-CreateFunctionLambdaFunctionQualifiedArn"
       },
@@ -1526,7 +1524,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-us-east-1-9b3153fe-811e",
-              "S3Key": "serverless/data-serverless-python-api/dev/1761767523010-2025-10-29T19:52:03.010Z/data-serverless-python-api.zip"
+              "S3Key": "serverless/data-serverless-python-api/dev/1761769277754-2025-10-29T20:21:17.754Z/data-serverless-python-api.zip"
             },
             "Handler": "handler.createFunction",
             "Runtime": "python3.12",
@@ -1555,9 +1553,9 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-us-east-1-9b3153fe-811e",
-              "S3Key": "serverless/data-serverless-python-api/dev/1761767523010-2025-10-29T19:52:03.010Z/data-serverless-python-api.zip"
+              "S3Key": "serverless/data-serverless-python-api/dev/1761769277754-2025-10-29T20:21:17.754Z/data-serverless-python-api.zip"
             },
-            "Handler": "handler.getFunction",
+            "Handler": "handler.get_function",
             "Runtime": "python3.12",
             "FunctionName": "data-serverless-python-api-dev-getFunction",
             "MemorySize": 1024,
@@ -1579,24 +1577,24 @@
             "GetFunctionLogGroup"
           ]
         },
-        "CreateFunctionLambdaVersionsea38W3WyyeVApdcyNY7sj4H1LfgF6sFiJG2DPxpfDs": {
+        "CreateFunctionLambdaVersionsIR06kw7ybuBNUJVl8M6jjEg2e9ocKOz3TxYxIhhGTg": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "CreateFunctionLambdaFunction"
             },
-            "CodeSha256": "kbPy7EYLBj44GbP6x34OsIEMrLGYyfgeBbRw/kKU74A="
+            "CodeSha256": "Xl16PvlHMkIaEw4MpK1TxrTWSB4wu0QDn0AMlHeiXbE="
           }
         },
-        "GetFunctionLambdaVersion4JkG5gKoJNQPBxh7cz9Po70AW5Z02aMaUbrBXBSKc": {
+        "GetFunctionLambdaVersion9Ii9FzRBON7p3cleaaOzkvgaYdvk0oOXbRyHewyYg": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "GetFunctionLambdaFunction"
             },
-            "CodeSha256": "kbPy7EYLBj44GbP6x34OsIEMrLGYyfgeBbRw/kKU74A="
+            "CodeSha256": "Xl16PvlHMkIaEw4MpK1TxrTWSB4wu0QDn0AMlHeiXbE="
           }
         },
         "ApiGatewayRestApi": {
@@ -1835,7 +1833,7 @@
             "GetFunctionLambdaPermissionApiGateway"
           ]
         },
-        "ApiGatewayDeployment1761767507185": {
+        "ApiGatewayDeployment1761769266177": {
           "Type": "AWS::ApiGateway::Deployment",
           "Properties": {
             "RestApiId": {
@@ -1965,7 +1963,7 @@
         "CreateFunctionLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "CreateFunctionLambdaVersionsea38W3WyyeVApdcyNY7sj4H1LfgF6sFiJG2DPxpfDs"
+            "Ref": "CreateFunctionLambdaVersionsIR06kw7ybuBNUJVl8M6jjEg2e9ocKOz3TxYxIhhGTg"
           },
           "Export": {
             "Name": "sls-data-serverless-python-api-dev-CreateFunctionLambdaFunctionQualifiedArn"
@@ -1974,7 +1972,7 @@
         "GetFunctionLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "GetFunctionLambdaVersion4JkG5gKoJNQPBxh7cz9Po70AW5Z02aMaUbrBXBSKc"
+            "Ref": "GetFunctionLambdaVersion9Ii9FzRBON7p3cleaaOzkvgaYdvk0oOXbRyHewyYg"
           },
           "Export": {
             "Name": "sls-data-serverless-python-api-dev-GetFunctionLambdaFunctionQualifiedArn"

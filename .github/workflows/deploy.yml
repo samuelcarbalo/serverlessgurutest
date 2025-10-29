@@ -12,30 +12,36 @@ jobs:
     
     # Define la etapa basada en la rama
     env:
-      # Si es la rama main, usa 'prod', si no, usa 'dev' (para la rama 'dev')
       STAGE_NAME: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
-
+      
     steps:
       - uses: actions/checkout@v4
       
-      # Configura Node.js (necesario para la CLI de Serverless y el plugin de Python)
+      # 1. Configura Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-      
-      # Instala dependencias de Serverless y plugins (basado en package.json)
-      - name: Install Dependencies
+          
+      # 💥 CORRECCIÓN CRÍTICA: Instalar Serverless V3 globalmente
+      - name: Install Serverless Framework V3 (Fix V4 Login Error)
+        run: npm install -g serverless@3
+        
+      # 2. Instala dependencias del proyecto (si tienes un package.json con otros plugins)
+      - name: Install Project Dependencies (npm)
         run: npm install
         
-      # Configura Python (necesario para el runtime de Lambda)
+      # 3. Configura Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      # Configura las credenciales de AWS
+      # 4. Instala dependencias de Python (de requirements.txt)
+      - name: Install Python Dependencies (pip)
+        run: pip install -r requirements.txt
+        
+      # 5. Configura las credenciales de AWS
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -43,7 +49,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      # Despliega la aplicación Serverless
+      # 6. Despliega la aplicación Serverless
       - name: Deploy Serverless Application to ${{ env.STAGE_NAME }}
-        # El comando 'serverless' o 'sls' automáticamente detecta y empaqueta el código Python.
-        run: npx serverless deploy --stage ${{ env.STAGE_NAME }}
+        # 💥 CORRECCIÓN: Usamos 'sls' ya que la V3 está instalada globalmente
+        run: sls deploy --stage ${{ env.STAGE_NAME }}
