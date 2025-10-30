@@ -17,13 +17,13 @@ def createFunction(event, context):
         if 'name' not in body or 'description' not in body:
             return { 'statusCode': 400, 'body': json.dumps({'message': 'Faltan campos obligatorios: name y description.'}) }
         item = {
-            'PK': "PRODUCT#" + str(uuid.uuid4()),
-            'SK': "#METADATA#",
+            'PK': "PRODUCTS",
+            'SK': str(uuid.uuid4()),
             "name": body['name'],
             "description": body['description'],
             "price": body['price'],
             "category": body['category'],
-            "disponible": True,
+            "available": body['available'],
             'createdAt': timestamp,
             'updatedAt': timestamp,
         }

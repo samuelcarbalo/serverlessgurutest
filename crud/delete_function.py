@@ -13,13 +13,10 @@ table = dynamodb.Table(os.environ['TEST_TABLE'])
 # --- 5. D - DELETE (Eliminar Producto) ---
 def deleteFunction(event, context):
     try:
-        data_pk_encoded = event['pathParameters']['PK']
-        
-        # 2. **DECODIFICAR** el valor para convertir %23 a #
-        data_pk = unquote(data_pk_encoded) # <--- APLICACIÓN DE LA CORRECCIÓN
+        data_pk = event['pathParameters']['id']
 
         # La clave compuesta requiere PK y SK para eliminar
-        table.delete_item(Key={'PK': data_pk, 'SK': '#METADATA#'})
+        table.delete_item(Key={'PK': 'PRODUCTS', 'SK': data_pk})
 
         return {
             'statusCode': 204, # 204 No Content: éxito en la eliminación sin cuerpo de respuesta

@@ -10,10 +10,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     
-    # Define la etapa basada en la rama
+    # Define la etapa (stage) de Serverless basada en la rama (branch) que disparó el push.
     env:
       STAGE_NAME: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
-      
+      # Si la rama es 'main', STAGE_NAME es 'prod'. En cualquier otro caso (como 'dev'), es 'dev'.
     steps:
       - uses: actions/checkout@v4
       
@@ -23,11 +23,9 @@ jobs:
         with:
           node-version: '20'
           
-      # 💥 CORRECCIÓN CRÍTICA: Instalar Serverless V3 globalmente
       - name: Install Serverless Framework V3 (Fix V4 Login Error)
         run: npm install -g serverless@3
         
-      # 2. Instala dependencias del proyecto (si tienes un package.json con otros plugins)
       - name: Install Project Dependencies (npm)
         run: npm install
         
@@ -51,5 +49,4 @@ jobs:
 
       # 6. Despliega la aplicación Serverless
       - name: Deploy Serverless Application to ${{ env.STAGE_NAME }}
-        # 💥 CORRECCIÓN: Usamos 'sls' ya que la V3 está instalada globalmente
         run: sls deploy --stage ${{ env.STAGE_NAME }}

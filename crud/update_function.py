@@ -16,8 +16,7 @@ def updateFunction(event, context):
         timestamp = str(datetime.now().timestamp())
         
         # 1. DECODIFICACIÓN Y DATOS DE ENTRADA
-        # Decodificar el PK para convertir %23 a #
-        data_pk = unquote(event['pathParameters']['PK'])
+        data_sk = unquote(event['pathParameters']['id'])
         body = json.loads(event['body'])
         
         update_assignments = []
@@ -29,8 +28,6 @@ def updateFunction(event, context):
         # 2. CONSTRUCCIÓN DE LA EXPRESIÓN DINÁMICA
         for key, value in body.items():
             if key not in IGNORAR_KEYS:
-                # Conversión a Decimal para el precio
-                
                 # Asignaciones (Ej: #name = :name)
                 update_assignments.append(f'#{key} = :{key}')
                 
@@ -50,7 +47,7 @@ def updateFunction(event, context):
 
         # 4. PARÁMETROS Y EJECUCIÓN
         params = {
-            'Key': {'PK': data_pk, 'SK': '#METADATA#'},
+            'Key': {'PK': data_sk, 'SK': '#METADATA#'},
             'UpdateExpression': update_expression_final,
             'ExpressionAttributeValues': expression_attribute_values,
             'ExpressionAttributeNames': expression_attribute_names,

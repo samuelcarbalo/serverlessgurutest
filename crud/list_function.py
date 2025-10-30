@@ -13,9 +13,7 @@ table = dynamodb.Table(os.environ['TEST_TABLE'])
 
 def listFunction(event, context):
     try:
-        # Usamos table.scan() para obtener todos los elementos de la tabla.
-        # ADVERTENCIA: scan() es costoso y lento en tablas grandes. Se prefiere usar Query + GSI.
-        result = table.scan() 
+        result = table.get_item(Key={'PK': 'PRODUCTS'})
         items = result.get('Items', [])
 
         return {

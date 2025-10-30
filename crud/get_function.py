@@ -13,13 +13,10 @@ table = dynamodb.Table(os.environ['TEST_TABLE'])
 
 def getFunction(event, context):
     try:
-        # Recupera el ID del path: /datas/{id}
-        data_pk_encoded = event['pathParameters']['id']
-        
-        # 2. **DECODIFICAR** el valor para convertir %23 a #
-        data_pk = unquote(data_pk_encoded) # <--- APLICACIÓN DE LA CORRECCIÓN
+        # Recupera el ID del path: /{id}
+        data_pk = event['pathParameters']['id']
 
-        result = table.get_item(Key={'PK': data_pk, 'SK': '#METADATA#'})
+        result = table.get_item(Key={'PK': 'PRODUCTS', 'SK': data_pk})
         item = result.get('Item')
 
         if not item:
