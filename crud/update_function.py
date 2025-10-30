@@ -64,7 +64,7 @@ def updateFunction(event, context):
 
     except Exception as e:
         print(f"Error updating data: {e}")
-        return { 'statusCode': 500, 'body': json.dumps({'message': f'Error interno del servidor. Detalle: {e}'}) }
+        return { 'statusCode': 500, 'body': json.dumps({'message': f'Internal Server Error. Detalle: {e}'}) }
 
 
 

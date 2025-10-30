@@ -27,7 +27,7 @@ def listFunction(event, context):
         }
     except Exception as e:
         print(f"Error listing data: {e}")
-        return { 'statusCode': 500, 'body': json.dumps({'message': 'Error interno del servidor.'}) }
+        return { 'statusCode': 500, 'body': json.dumps({'message': 'Internal Server Error.'}) }
 
 
 

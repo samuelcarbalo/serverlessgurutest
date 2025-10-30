@@ -25,5 +25,5 @@ def deleteFunction(event, context):
         }
     except Exception as e:
         print(f"Error deleting data: {e}")
-        return { 'statusCode': 500, 'body': json.dumps({'message': 'Error interno del servidor.'}) }
+        return { 'statusCode': 500, 'body': json.dumps({'message': 'Internal Server Error.'}) }
 

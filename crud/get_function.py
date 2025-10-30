@@ -23,7 +23,7 @@ def getFunction(event, context):
         item = result.get('Item')
 
         if not item:
-            return { 'statusCode': 404, 'body': json.dumps({'message': 'Tarea no encontrada.'}) }
+            return { 'statusCode': 404, 'body': json.dumps({'message': 'Data not Found.'}) }
 
         return {
             'statusCode': 200,
@@ -32,5 +32,5 @@ def getFunction(event, context):
         }
     except Exception as e:
         print(f"Error getting data: {e}")
-        return { 'statusCode': 500, 'body': json.dumps({'message': 'Error interno del servidor.'}) }
+        return { 'statusCode': 500, 'body': json.dumps({'message': 'Internal Server Error.'}) }
 
