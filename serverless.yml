@@ -37,7 +37,7 @@ functions:
     handler: crud.create_function.createFunction # archivo.funcion
     events:
       - http:
-          path: coffees
+          path: coffee
           method: post
           cors: true
 
@@ -53,7 +53,7 @@ functions:
     handler: crud.list_function.listFunction
     events:
       - http:
-          path: coffees/all
+          path: coffee/
           method: get
           cors: true
 
