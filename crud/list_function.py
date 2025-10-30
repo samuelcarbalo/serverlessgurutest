@@ -13,6 +13,7 @@ table = dynamodb.Table(os.environ['TEST_TABLE'])
 
 def listFunction(event, context):
     try:
+        # Recupera todos los productos
         result = table.get_item(Key={'PK': 'PRODUCTS'})
         items = result.get('Items', [])
 
