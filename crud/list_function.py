@@ -4,6 +4,7 @@ import os
 import boto3
 from datetime import datetime
 from urllib.parse import unquote
+from boto3.dynamodb.conditions import Key, Attr  # type: ignore
 
 # Configuración de DynamoDB
 # Usamos boto3.resource para una interfaz de alto nivel (más fácil de usar)
@@ -14,7 +15,9 @@ table = dynamodb.Table(os.environ['TEST_TABLE'])
 def listFunction(event, context):
     try:
         # Recupera todos los productos
-        result = table.get_item(Key={'PK': 'PRODUCTS'})
+        result = table.query(
+            KeyConditionExpression=Key('PK').eq('PRODUCTS')
+        )
         items = result.get('Items', [])
 
         return {

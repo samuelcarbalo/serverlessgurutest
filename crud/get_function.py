@@ -4,6 +4,7 @@ import os
 import boto3
 from datetime import datetime
 from urllib.parse import unquote
+from boto3.dynamodb.conditions import Key, Attr  # type: ignore
 
 # Configuración de DynamoDB
 # Usamos boto3.resource para una interfaz de alto nivel (más fácil de usar)
@@ -16,7 +17,9 @@ def getFunction(event, context):
         # Recupera el ID del path: /{id}
         data_pk = event['pathParameters']['id']
 
-        result = table.get_item(Key={'PK': 'PRODUCTS', 'SK': data_pk})
+        result = table.query(
+            KeyConditionExpression=Key('PK').eq('PRODUCTS') & Key('SK').eq(data_pk)
+        )
         item = result.get('Item')
 
         if not item:
