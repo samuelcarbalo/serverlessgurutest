@@ -61,7 +61,7 @@ functions:
     handler: crud.update_function.updateFunction
     events:
       - http:
-          path: coffee/update/{id}
+          path: coffee/{id}
           method: put
           cors: true
 
@@ -69,7 +69,7 @@ functions:
     handler: crud.delete_function.deleteFunction
     events:
       - http:
-          path: coffee/delete/{id}
+          path: coffee/{id}
           method: delete
           cors: true
 
