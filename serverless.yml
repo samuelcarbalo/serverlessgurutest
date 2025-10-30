@@ -53,7 +53,7 @@ functions:
     handler: crud.list_function.listFunction
     events:
       - http:
-          path: coffee/
+          path: coffee
           method: get
           cors: true
 
