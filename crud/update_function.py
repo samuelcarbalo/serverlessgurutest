@@ -47,7 +47,7 @@ def updateFunction(event, context):
 
         # 4. PARÁMETROS Y EJECUCIÓN
         params = {
-            'Key': {'PK': data_sk, 'SK': '#METADATA#'},
+            'Key': {'PK': 'PRODUCTS', 'SK':data_sk },
             'UpdateExpression': update_expression_final,
             'ExpressionAttributeValues': expression_attribute_values,
             'ExpressionAttributeNames': expression_attribute_names,
