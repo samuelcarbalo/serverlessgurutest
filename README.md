@@ -1,1 +1,1 @@
-# serverlessgurutest
+# Serverless CRUD REST API con Serverless Framework, Python y DynamoDB.
