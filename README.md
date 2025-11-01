@@ -17,7 +17,9 @@ proxy de servicio de API Gateway a DynamoDB según lo solicitado.
 ✅ CI/CD para Despliegues Multi-Stage usando GitHub Actions: Configurado un pipeline para despliegues automatizados a los entornos dev y prod (ejecutado con push a la rama main).
 
 ✅ Codigo y Documentación: Repositorio publico con historial de commits y documentacion completa.
+![Imagen de Github Actions](images/github_actions.png)
 
+![Imagen del yml de despliegue de ci/cd](images/github_deploy.png)
 ✅ Link del video de explicacion de codigo
  https://drive.google.com/file/d/15S8s1zAirYcLYlMj9RnlbPXkHZdCQCB7/view?usp=sharing
 
