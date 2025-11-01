@@ -20,7 +20,7 @@ def getFunction(event, context):
         result = table.query(
             KeyConditionExpression=Key('PK').eq('PRODUCTS') & Key('SK').eq(data_pk)
         )
-        item = result.get('Item')
+        item = result.get('Items', [None])[0]
 
         if not item:
             return { 'statusCode': 404, 'body': json.dumps({'message': 'Data not Found.'}) }
